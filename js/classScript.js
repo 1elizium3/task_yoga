@@ -18,7 +18,7 @@ class Options {
  //  Создаём переменную (param) добавляя 
  // в него все свойства, при помощи cssText изменяем 
  // свой стиль из переданных параметров.
- // Добавляем текст (p.textContent).
+ // Добавляем текст (p.textContent)
 
     newBlock() {
         let elem = document.createElement('div'),
