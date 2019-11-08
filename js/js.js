@@ -1,6 +1,6 @@
 // 'use strict'
-
-// Вводим на экран правильное сообщение, которое берет значение из input
+//  <input id="age" value="30"></input> 
+// Выводим на экран правильное сообщение, которое берет значение из input
 
 let age = document.getElementById('age');
 function showUser(surname, name) {
@@ -14,4 +14,4 @@ function showUser(surname, name) {
 
 // Второй вариант
 
-showUser.apply(age, ['Bulya', 'Tony']); 
+// showUser.apply(age, ['Bulya', 'Tony']); 

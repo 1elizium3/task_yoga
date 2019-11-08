@@ -1,7 +1,7 @@
 /*Любое начало проекта начинается с назначения обработчика событий
 на всю страницу*/
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', () => {
 
     'use strict';
 
@@ -47,7 +47,7 @@ hideTabContent(1); 1 - это кол-во показываемого конте�
  теперь показываем только тот который совпал с "tab" showTabContent(i),
  после останавливаем цыкл что бы он дальше не работал */
 
-    info.addEventListener('click', function(event) {
+    info.addEventListener('click', (event) => {
         let target = event.target;
         if (target && target.classList.contains('info-header-tab')) {
             for (let i = 0; i < tab.length; i++) {
@@ -118,13 +118,15 @@ hideTabContent(1); 1 - это кол-во показываемого конте�
         function updateClock() {
             let t = getTimeRemaining(endtime);
             // Второй вариант 
-            function addZero(num) {
+            // let addZero = (num) =>{}
+            // function addZero(num) {
+            let addZero = (num) => {
                 if (num <= 9) {
                     return '0' + num;
                 } else {
                     return num;
                 }
-            }
+            };
                 
             hours.textContent = addZero(t.hours);
             minutes.textContent = addZero(t.minutes);
@@ -171,7 +173,7 @@ hideTabContent(1); 1 - это кол-во показываемого конте�
     });
 
  // Привязываем модальное окно к кнопкам “Узнать подробнее” в табах
- // черезquerySelectorAll так как Табов несколько.
+ // через querySelectorAll так как Табов несколько.
 
  // ОДИН ИЗ ВАРИАНТОВ РЕШЕНИЯ
 
@@ -187,7 +189,7 @@ hideTabContent(1); 1 - это кол-во показываемого конте�
  //         document.body.style.overflow = 'hidden';
  //     }
 
-    description.forEach(function(item) {
+    description.forEach( (item) => {
         item.addEventListener('click', function() {
             overlay.style.display = 'block';
             this.classList.add('more-splash');
@@ -200,7 +202,7 @@ hideTabContent(1); 1 - это кол-во показываемого конте�
  // При закрытии (ставим more. место this.) удаляем анимацию .remove('more-splash').
  // Включаем прокрутку страницы после закрытия окна "Узнать больше/подробнее"
  
-    close.addEventListener('click', function() {
+    close.addEventListener('click', () => {
         overlay.style.display = 'none';
         more.classList.remove('more-splash');
         document.body.style.overflow = '';
