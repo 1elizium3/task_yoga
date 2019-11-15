@@ -214,9 +214,9 @@ hideTabContent(1); 1 - это кол-во показываемого конте�
 
 // 'use strict'
 
-let age = document.getElementById('age');
-function showUser(surname, name) {
-	alert("Пользователь " + surname + " " + name + ", его возраст " + this.value);
+	let age = document.getElementById('age');
+	function showUser(surname, name) {
+	   alert("Пользователь " + surname + " " + name + ", его возраст " + this.value);
 }
 
 // // Первый Вариант
@@ -226,10 +226,10 @@ function showUser(surname, name) {
 
 // Второй вариант
 
-showUser.apply(age, ['Bulya', 'Tony']); 
+	showUser.apply(age, ['Bulya', 'Tony']); 
 
 
-Добавляем classScript.js и создаём блок по стандартам ES6
+//Добавляем classScript.js и создаём блок по стандартам ES6
 
 'use strict';
 
@@ -237,14 +237,14 @@ showUser.apply(age, ['Bulya', 'Tony']);
 // Вводим свойства: height, width, bg, fontSize, textAlign
 // 
 
-class Options {
-    constructor(height, width, bg, fontSize, textAlign) {
-        this.height = height;
-        this.width = width;
-        this.bg = bg;
-        this.fontSize = fontSize;
-        this.textAlign = textAlign;
-    }
+	class Options {
+	    constructor(height, width, bg, fontSize, textAlign) {
+		this.height = height;
+		this.width = width;
+		this.bg = bg;
+		this.fontSize = fontSize;
+		this.textAlign = textAlign;
+	    }
 
  // Создаём метод newBlock(). В методе создаём новый блок(elem) и блок (p)
  // и добавляем их (appenChild) (р - отвечает за текс). 
@@ -264,8 +264,8 @@ class Options {
          font-size:${this.fontSize}px; text-align:${this.textAlign}` );        
         elem.style.cssText = param;
         p.textContent = 'sfsdfgsdfas fsdfsd fsdfssfdsfad fasdfasdasd sdfsdfawsr dfljuadaisdu';
+     }
     }
-}
 
 // Создаём новый (new) объект через класс и присваиваем значения.
 // Вызываем его методы и получаем элемент на странице
