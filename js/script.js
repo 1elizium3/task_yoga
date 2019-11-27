@@ -208,5 +208,116 @@ hideTabContent(1); 1 - это кол-во показываемого конте�
         document.body.style.overflow = '';
     });
 
+    // Form 
+    // (Modal and Contact)
+ // Создаём объект в котором будут содержатся различные состояния запроса!
+    let message = {
+        loading: 'Загрузка...',
+        success: 'Спасибо! Скоро мы с вами свяжемся!',
+        failure: 'Произошол збой...'
+    };
+
+ // Получаем те элементы со страницы с которыми будем работать
+ // (form - находится в модальном окне).
+ // Получаем все инпуты (input) с этой формы.
+ // Нужно оповестить пользователя, для этого создаём новый элемент на странице (div),
+ // задаём определённый класс(status) и помещаем в определённое место на странице
+    let form = document.querySelector('.main-form'),
+        input = form.getElementsByTagName('input'),
+        statusMessage = document.createElement('div'),
+        contacts = document.getElementById('form');
+
+        statusMessage.classList.add('status');
+
+ // Подключить скрипт отправки данных с формы к Модальному окну!
+ // Прописываем запрос. Назначаем оброботчик соб. на всю форму и указываем submit
+ // Оповещаем пользователя как прошел запрос (.appendChild())
+ // submit (подтверждение формы).
+ // Отменяем стандартное поведение браузера (При нажатии на buttom(Оставить заявку)
+ // происходит перезагрузка страницы) с помощью .preventDefault()
+ // Создаём запрос что бы мы могли отправлять данные на сервер (request)
+ // Настраиваем запрос .open(). server.php - url сервера (лежит в папке проэкта)
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        form.appendChild(statusMessage);
+
+        let request = new XMLHttpRequest();
+        request.open('POST', 'server.php');
+ // Настраиваем заголовки http запроса
+    // Обычная форма
+        // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // Форма в JSON
+        request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+
+ // Получаем данные которые ввёл пользователь
+ // Отправляем с помощью .send() (открывает запрос)
+        let formData = new FormData(form);
+
+ // Преобразовуем данные formData в JSON формат
+ // Создаём новый пустой объект что бы поместить в него полученные данные formData
+ // С помощью .forEach берем объект formData и все данные которые есть 
+ // в нём помещаем в объект (obj)
+ // После превращаем этот объект в JSON формат при помощи .stringify()
+        let obj = {};
+        formData.forEach((value, key) => {
+            obj[key] = value;
+        });
+        let json = JSON.stringify(obj);
+
+        request.send(json);
+
+ // Настраиваем отображения информации ответа для пользователя (loading, success, failure)
+        request.addEventListener('readystatechange', function() {
+            if (request.readyState < 4) {
+                statusMessage.innerHTML = message.loading;
+            } else if (request.readyState == 4 && request.status == 200) {
+                statusMessage.innerHTML = message.success;
+            } else {
+                statusMessage.innerHTML = message.failure;
+            }
+        });
+
+ // Отчищаем все импуты (строка ввода) после отправки каких либо данных
+        for (let i = 0; i < input.length; i++) {
+            input[i].value = '';
+        }
+    });
+
+ // Подключить скрипт отправки данных с формы к Контактной форме
+    contacts.addEventListener('submit', function(event) {
+        event.preventDefault();
+        contacts.appendChild(statusMessage);
+
+        let request = new XMLHttpRequest();
+        request.open('POST', 'server.php');
+        request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        
+
+        let form2 = new FormData(contacts);
+
+        let obj = {};
+        form2.forEach((value, key) => {
+            obj[key] = value;
+        });
+        let json = JSON.stringify(obj);
+
+        request.send(json);
+
+        request.addEventListener('readystatechange', function() {
+            if (request.readyState < 4) {
+                statusMessage.innerHTML = message.loading;
+            } else if (request.readyState == 4 && request.status == 200) {
+                statusMessage.innerHTML = message.success;
+            } else {
+                statusMessage.innerHTML = message.failure;
+            }
+        });
+
+        for (let i = 0; i < input.length; i++) {
+            input[i].value = '';
+        }
+    });
+
 });
+
 
