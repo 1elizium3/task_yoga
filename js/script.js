@@ -294,7 +294,6 @@ hideTabContent(1); 1 - это кол-во показываемого конте�
         
 
         let form2 = new FormData(contacts);
-
         let obj = {};
         form2.forEach((value, key) => {
             obj[key] = value;
