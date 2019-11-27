@@ -1,7 +1,7 @@
 /*Любое начало проекта начинается с назначения обработчика событий
 на всю страницу*/
 
-window.addEventListener('DOMContentLoaded', function() {
+	window.addEventListener('DOMContentLoaded', function() {
 
     'use strict';
 
@@ -207,6 +207,7 @@ hideTabContent(1); 1 - это кол-во показываемого конте�
         document.body.style.overflow = '';
     });
 
+<<<<<<< HEAD
  // Form 
     // (Modal and Contact)
  // Создаём объект в котором будут содержатся различные состояния запроса!
@@ -329,15 +330,17 @@ hideTabContent(1); 1 - это кол-во показываемого конте�
     });
 
 });
+=======
+    });
+>>>>>>> 30009256cff55cfcb6737567efb9abb961f87e7b
 
 
 // Вводим на экран правильное сообщение, которое берет значение из input!
-
 // 'use strict'
 
-let age = document.getElementById('age');
-function showUser(surname, name) {
-	alert("Пользователь " + surname + " " + name + ", его возраст " + this.value);
+	let age = document.getElementById('age');
+	function showUser(surname, name) {
+	   alert("Пользователь " + surname + " " + name + ", его возраст " + this.value);
 }
 
 // // Первый Вариант
@@ -347,25 +350,30 @@ function showUser(surname, name) {
 
 // Второй вариант
 
-showUser.apply(age, ['Bulya', 'Tony']); 
+	showUser.apply(age, ['Bulya', 'Tony']); 
 
 
-Добавляем classScript.js и создаём блок по стандартам ES6
+
+//Используя синтаксис ES6 в отдельном документе:
+//· Создать класс options
+//· Он должен содержать свойства: height, width, bg, fontSize, textAlign
+//· Он должен содержать метод, создающий новый div на странице, записывающий в него любой текст и при помощи cssText изменять свой стиль //    из переданных параметров
+//·  Создать новый объект через класс
+//·  Вызвать его метод и получить элемент на странице
 
 'use strict';
-
+//Добавляем classScript.js и создаём блок по стандартам ES6
 // Создаём Класс Options
 // Вводим свойства: height, width, bg, fontSize, textAlign
-// 
 
-class Options {
-    constructor(height, width, bg, fontSize, textAlign) {
-        this.height = height;
-        this.width = width;
-        this.bg = bg;
-        this.fontSize = fontSize;
-        this.textAlign = textAlign;
-    }
+	class Options {
+	    constructor(height, width, bg, fontSize, textAlign) {
+		this.height = height;
+		this.width = width;
+		this.bg = bg;
+		this.fontSize = fontSize;
+		this.textAlign = textAlign;
+	    }
 
  // Создаём метод newBlock(). В методе создаём новый блок(elem) и блок (p)
  // и добавляем их (appenChild) (р - отвечает за текс). 
@@ -385,12 +393,12 @@ class Options {
          font-size:${this.fontSize}px; text-align:${this.textAlign}` );        
         elem.style.cssText = param;
         p.textContent = 'sfsdfgsdfas fsdfsd fsdfssfdsfad fasdfasdasd sdfsdfawsr dfljuadaisdu';
+     }
     }
-}
 
 // Создаём новый (new) объект через класс и присваиваем значения.
 // Вызываем его методы и получаем элемент на странице
 
-const newObj = new Options(300, 200, "green", 14, "center");
-newObj.newBlock();
+	const newObj = new Options(300, 200, "green", 14, "center");
+	newObj.newBlock();
 

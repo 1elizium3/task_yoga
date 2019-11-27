@@ -39,3 +39,12 @@ class Options {
 
 const newObj = new Options(300, 200, "green", 14, "center");
 newObj.newBlock();
+
+
+
+let str = "I love JavaScript";
+
+let result = str.match(/HTML/) || [];
+
+console.log(result); // null
+console.log(result.length);
