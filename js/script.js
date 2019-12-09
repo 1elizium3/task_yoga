@@ -212,6 +212,75 @@ window.addEventListener('DOMContentLoaded', () => {
     sendForm(form);
     sendForm(contacts);
 
+    // Slider
+ //  Параметр текущего слайдера slideIndex
+
+    let slideIndex = 1,   /*Отвечает за слайд который отображается 
+                          на текущий момент (Первый)*/
+        slides = document.querySelectorAll('.slider-item'),  /*Все слайды*/
+        prev = document.querySelector('.prev'),  /*Стрелка вперед*/
+        next = document.querySelector('.next'),  /*Стрелка назад*/
+        dotsWrap = document.querySelector('.slider-dots'), /*Указываем обёртки точек*/
+        dots = document.querySelectorAll('.dot');  /*Все точки*/
+
+    showSlides(slideIndex);
+
+    // Скрываем лишние слайды!
+    function showSlides(n) {
+    // Через условие указываем переключение слайдов с первого к последнему
+    // и от последнего к первому!
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+ //   С помощью перебора скрываем лишние слайды
+        slides.forEach( (item) => item.style.display = 'none');
+        // // Тоже что и forEach только через for()
+        // for (let i = 0; i < slides.length; i++) {
+        //     slides[i].style.display = 'none';
+        // }
+ //  Удаляем лишние активные точки
+        dots.forEach((item) => item.classList.remove('dot-active'));
+ // Показываем нужный нам слайд (указываем его индекс)(нумерация начинается с 0)
+ // Показываем нужную точку   
+        slides[slideIndex - 1].style.display = 'block';
+        dots[slideIndex - 1].classList.add('dot-active');
+    }
+
+    // Увеличиваем параметр (+) slideIndex на 1
+    // Определяем текущий слайд и устанавливаем его 
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    // Реалезуем стрелку назад <  
+    // Реалезуем стрелку вперед >
+    prev.addEventListener('click', function() {
+        plusSlides(-1);
+    });
+    next.addEventListener('click', function() {
+        plusSlides(1);
+    });
+// // Переключение таймера через интервал
+//     setInterval(function() {
+//         plusSlides(1);
+//     }, 6000 );
+
+ // Реалезуем управления точками через делегирование (e.target).
+  
+    dotsWrap.addEventListener('click', function(e) {
+        for (let i = 0; i < dots.length + 1; i++) {
+            if (e.target.classList.contains('dot') && e.target == dots[i - 1]) {
+                currentSlide(i);
+            }
+        }
+    });
+
     //  // Подключить скрипт отправки данных с формы к Контактной форме
     //     contacts.addEventListener('submit', function(event) {
     //         event.preventDefault();
