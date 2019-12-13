@@ -242,9 +242,7 @@ window.addEventListener('DOMContentLoaded', () => {
         //     slides[i].style.display = 'none';
         // }
  //  Удаляем лишние активные точки
-        dots.forEach((item) => item.classList.remove('dot-active'));
- // Показываем нужный нам слайд (указываем его индекс)(нумерация начинается с 0)
- // Показываем нужную точку   
+        dots.forEach((item) => item.classList.remove('dot-active'));   
         slides[slideIndex - 1].style.display = 'block';
         dots[slideIndex - 1].classList.add('dot-active');
     }
@@ -281,6 +279,58 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Calc
+ // Привязываем кол-во людей, кол-во дней, место поездки и общую сумму.
+
+    let persons = document.querySelectorAll('.counter-block-input')[0],
+        restDays = document.querySelectorAll('.counter-block-input')[1],
+        place = document.getElementById('select'),
+        totalValue = document.getElementById('total'),
+        personsSum = 0,
+        daysSum = 0,
+        total = 0;
+
+    totalValue.innerHTML = 0;
+
+ // На persons и restDays навешиваем обработчик (в данном случае нельзя использовать 
+ // стрелочную функцию так как используется контекст вызова this).  
+ // Рассчитываем сумму и проверяем на пустые поля.  
+
+    persons.addEventListener('input', function() {
+        personsSum = +this.value;
+        total = (daysSum * personsSum)*4000; 
+
+        if (restDays.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            totalValue.innerHTML = total;
+        }
+    });
+
+    restDays.addEventListener('input', function() {
+        daysSum = +this.value;
+        total = (daysSum * personsSum)*4000;
+
+        if (persons.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            totalValue.innerHTML = total;
+        }
+    });
+
+ // Привязываем place к обработчику, проверяем на пустые поля,
+ // если поля заполнены выводим сумму.
+
+    place.addEventListener('input', function() {
+        if (restDays.value == '' || persons.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            let a = total;
+            totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+        }
+    });
+
+
     //  // Подключить скрипт отправки данных с формы к Контактной форме
     //     contacts.addEventListener('submit', function(event) {
     //         event.preventDefault();
@@ -316,5 +366,6 @@ window.addEventListener('DOMContentLoaded', () => {
     //     });
 
 });
+
 
 
