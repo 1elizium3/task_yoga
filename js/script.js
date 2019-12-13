@@ -319,7 +319,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
  // Привязываем place к обработчику, проверяем на пустые поля,
- // если поля заполнены выводим сумму.
+ // если поля заполнены выводим сумму. Рассчитываем сумму к месту поездки на отдых.
 
     place.addEventListener('input', function() {
         if (restDays.value == '' || persons.value == '') {
